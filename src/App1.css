@@ -1,0 +1,254 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+/* MAIN APP */
+.app{
+    height: 100vh;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-rows: 65px auto 45px;
+
+    background: linear-gradient(
+        120deg,
+        rgb(10,10,40),
+        rgb(30,60,114),
+        rgb(72,61,139),
+        rgb(20,20,60)
+    );
+    background-size: 400% 400%;
+    animation: bgMove 10s infinite linear;
+}
+
+/* BACKGROUND FLOW */
+@keyframes bgMove{
+    0%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
+}
+
+/* HEADER */
+.app .header{
+    background: linear-gradient(
+        270deg,
+        rgb(255,0,150),
+        rgb(0,255,255),
+        rgb(138,43,226),
+        rgb(0,255,127)
+    );
+    background-size: 600% 600%;
+    animation: headerGlow 6s infinite linear;
+
+    color: white;
+    line-height: 65px;
+    font-size: 15pt;
+    font-weight: 600;
+    padding-left: 20px;
+
+    text-shadow: 0 0 10px cyan;
+    box-shadow: 0 0 25px rgba(0,255,255,0.7);
+}
+
+/* HEADER RGB FLOW */
+@keyframes headerGlow{
+    0%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
+}
+
+/* FOOTER */
+.app .footer{
+    background: linear-gradient(
+        90deg,
+        rgb(138,43,226),
+        rgb(0,255,255),
+        rgb(255,0,150)
+    );
+    background-size: 300% 300%;
+    animation: footerFlow 5s infinite linear;
+
+    color: white;
+    line-height: 45px;
+    font-size: 9pt;
+    padding-left: 20px;
+
+    box-shadow: 0 -0 20px rgba(0,255,255,0.6);
+}
+
+@keyframes footerFlow{
+    0%{ background-position: 0% 50%; }
+    100%{ background-position: 100% 50%; }
+}
+
+/* SECTION – GLASS */
+.app .section{
+    overflow: auto;
+    padding: 20px;
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(14px);
+}
+
+/* TABLE */
+.app .section table{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.9);
+    animation: fadeInUp 1s ease;
+}
+
+/* TABLE ENTRANCE */
+@keyframes fadeInUp{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TABLE HEADER */
+.app .section table thead{
+    background: linear-gradient(
+        90deg,
+        rgb(0,153,255),
+        rgb(255,0,150)
+    );
+    color: white;
+}
+
+/* ROWS */
+.app .section table thead tr,
+.app .section table tbody tr{
+    height: 45px;
+}
+
+/* ZEBRA */
+.app .section table tbody tr:nth-child(even){
+    background: rgb(240,245,255);
+}
+
+/* 🌊 WAVE / SHIMMER EFFECT */
+.app .section table tbody tr{
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.app .section table tbody tr::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
+    transform: translateX(-100%);
+}
+
+.app .section table tbody tr:hover::after{
+    animation: shimmer 0.8s ease;
+}
+
+@keyframes shimmer{
+    to{
+        transform: translateX(100%);
+    }
+}
+
+/* ROW HOVER – NEON */
+.app .section table tbody tr:hover{
+    background: linear-gradient(
+        90deg,
+        rgba(0,255,255,0.3),
+        rgba(255,0,150,0.3)
+    );
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+
+/* CELLS */
+.app .section table th,
+.app .section table td{
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+}
+
+/* ICON / IMAGE */
+.app .section table tbody tr td img{
+    height: 24px;
+    cursor: pointer;
+
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* ICON RGB GLOW */
+.app .section table tbody tr td img:hover{
+    transform: rotate(360deg) scale(1.5);
+    filter: drop-shadow(0 0 10px cyan)
+            drop-shadow(0 0 20px violet);
+}
+.app .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app .overlay .popup{
+    width: 500px;
+    height: 300px;
+    color:white;
+    background: linear-gradient(
+  270deg,
+  rgb(0,153,255),
+  rgb(255,0,150),
+  rgb(0,255,127),
+  rgb(138,43,226)
+);
+background-size: 600% 600%;
+animation: rgbWave 8s ease-in-out infinite;
+
+@keyframes rgbWave {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 50% 100%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px black;
+}
+.app .overlay .popup button{
+    float: right;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16pt;
+    font-weight: bold;
+    color: red;
+    border-radius: 50%;
+    
+}
+.app .overlay .popup p{
+    display: grid;
+    grid-template-columns: 150px auto;
+}
